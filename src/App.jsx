@@ -309,8 +309,12 @@ export default function App() {
 
   function connect() {
     if (!username.trim()) return;
+
+    const wsUrl = import.meta.env.VITE_URL_WS;
+    console.log("WebSocket URL:", wsUrl);
+
     const client = new Client({
-      brokerURL: `ws://chat-env.eba-7xdc6fdn.sa-east-1.elasticbeanstalk.com/livechat-websocket`,
+      brokerURL: `wss://${wsUrl}/livechat-websocket`,
       onConnect: () => {
         setConnected(true);
         setScreen("chat");
